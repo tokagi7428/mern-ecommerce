@@ -67,7 +67,7 @@ function Login({ loginUser }) {
       </Formik>
       <div className=" my-2 text-center">
         <span>{t("login.newuser")}? </span>
-        <Link to="/register"> {t("login.register")} </Link>
+        <Link to="/signup"> {t("login.register")} </Link>
         {t("login.createyouraccount")}
       </div>
     </Container>

@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.site-container {
+.site-container{
   min-height: 100vh;
 }
 .small-container
