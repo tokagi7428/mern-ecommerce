@@ -1,0 +1,14 @@
+{
+    "home" : {
+        "brand": "แบรนด์",
+        "signin": "ลงชื่อใช้งาน"
+    },
+    "login" :{
+        "login": "ล็อกอิน",
+        "email":"อีเมลล์",
+        "password":"รหัสผ่าน",
+        "newuser": "ผู้ใช้ใหม่",
+        "register":"ลงทะเบียน",
+        "createyouraccount":"สร้างบัญชีใหม่"
+    }
+}

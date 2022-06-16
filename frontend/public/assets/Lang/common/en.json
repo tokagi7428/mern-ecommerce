@@ -1,0 +1,14 @@
+{
+    "home" : {
+        "brand": "brand",
+        "signin": "Sign In"
+    },
+    "login" :{
+        "login": "Login",
+        "email":"Email Address",
+        "password":"Password",
+        "newuser": "New user",
+        "register":"register",
+        "createyouraccount":"Create your account"
+    }
+}
