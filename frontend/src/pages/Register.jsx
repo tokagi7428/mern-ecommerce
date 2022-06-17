@@ -1,15 +1,18 @@
 import { Form, Formik, validateYupSchema } from "formik";
 import { useTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import { signupUser } from "../redux/actions/userAction";
 import React from "react";
 import { Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { FiUser, FiMail, FiCalendar, FiLock } from "react-icons/fi";
 import FormLib from "../components/FormLib";
 import * as Yup from "yup";
 
-function Register() {
+function Register({ signupUser }) {
   const { t } = useTranslation(["common"]);
+  const navigate = useNavigate();
   return (
     <Container className="small-container border border-1 my-5 p-3">
       <Helmet>
@@ -37,6 +40,10 @@ function Register() {
             .oneOf([Yup.ref("password")], "Password much match")
             .required("Required"),
         })}
+        onSubmit={(values, { setSubmitting, setFieldError }) => {
+          console.log(values);
+          signupUser(values, navigate, setSubmitting, setFieldError);
+        }}
       >
         <Form>
           <FormLib
@@ -84,4 +91,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default connect(null, { signupUser })(Register);

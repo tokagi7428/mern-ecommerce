@@ -9,19 +9,19 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PageError from "./pages/PageError";
 import { connect } from "react-redux";
-
+import { logoutUser } from "./redux/actions/userAction";
 //i18n
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
-function App({ user }) {
+function App({ user, logoutUser }) {
   const { i18n, t } = useTranslation(["common"]);
-
+  const { name } = user;
   useEffect(() => {
     if (localStorage.getItem("i18nextLng")?.length > 2) {
       i18next.changeLanguage("en");
     }
-  }, []);
+  });
 
   const handleLanguageChange = (e) => {
     i18n.changeLanguage(e.target.value);
@@ -51,14 +51,8 @@ function App({ user }) {
                         <option value="th">Thailand</option>
                       </select>
                     </li>
-                    {user ? (
-                      <Nav.Item className="">
-                        <Link to="/signin" className="text-light nav-link">
-                          {t("home.signin")}
-                        </Link>
-                      </Nav.Item>
-                    ) : (
-                      <NavDropdown title={user.name} id="nav-dropdown">
+                    {name ? (
+                      <NavDropdown title={name} id="nav-dropdown" bg="dark">
                         <LinkContainer to="/profile">
                           <NavDropdown.Item>Profile</NavDropdown.Item>
                         </LinkContainer>
@@ -66,10 +60,18 @@ function App({ user }) {
                           <NavDropdown.Item>Order History</NavDropdown.Item>
                         </LinkContainer>
                         <NavDropdown.Divider />
-                        <LinkContainer to="#signout">
-                          <NavDropdown.Item>Logout</NavDropdown.Item>
+                        <LinkContainer to="/signin">
+                          <NavDropdown.Item onClick={() => logoutUser()}>
+                            {t("home.signout")}
+                          </NavDropdown.Item>
                         </LinkContainer>
                       </NavDropdown>
+                    ) : (
+                      <Nav.Item className="">
+                        <Link to="/signin" className="text-light nav-link">
+                          {t("home.signin")}
+                        </Link>
+                      </Nav.Item>
                     )}
                   </Nav>
                 </Navbar.Collapse>
@@ -99,4 +101,4 @@ const mapStateProps = ({ session }) => ({
   user: session.user,
 });
 
-export default connect(mapStateProps, null)(App);
+export default connect(mapStateProps, { logoutUser })(App);

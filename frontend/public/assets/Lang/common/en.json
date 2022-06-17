@@ -1,7 +1,8 @@
 {
     "home" : {
         "brand": "Brand",
-        "signin": "Sign In"
+        "signin": "Sign In",
+        "signout":"Sign Out"
     },
     "signin" :{
         "signin": "Sign In",
