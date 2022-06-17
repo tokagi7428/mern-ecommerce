@@ -11,11 +11,11 @@ import "./i18n.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <Provider store={Store}>
+    <Provider store={Store}>
+      <HelmetProvider>
         <App />
-      </Provider>
-    </HelmetProvider>
+      </HelmetProvider>
+    </Provider>
   </React.StrictMode>
 );
 

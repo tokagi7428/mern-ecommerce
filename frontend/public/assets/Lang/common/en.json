@@ -1,14 +1,25 @@
 {
     "home" : {
-        "brand": "brand",
+        "brand": "Brand",
         "signin": "Sign In"
     },
-    "login" :{
-        "login": "Login",
+    "signin" :{
+        "signin": "Sign In",
         "email":"Email Address",
         "password":"Password",
         "newuser": "New user",
-        "register":"register",
+        "register":"Register",
         "createyouraccount":"Create your account"
+    },
+    "signup": {
+        "signup":"Sign up",
+        "name":"Name",
+        "email":"Email Address",
+        "dateOfBirth":"Date of Birth",
+        "password":"Password",
+        "comfirmPassword":"Comfirm Password",
+        "btnSignup":"Submit",
+        "alreadyhaveaccount":"Already have account ? ",
+        "signin":"Sign In"
     }
 }

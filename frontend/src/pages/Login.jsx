@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { loginUser } from "../redux/actions/userAction";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 function Login({ loginUser }) {
   const navigate = useNavigate();
@@ -18,9 +19,9 @@ function Login({ loginUser }) {
   return (
     <Container className="my-5 border border-1 p-3 small-container">
       <Helmet>
-        <title>Login</title>
+        <title>{t("signin.signin")}</title>
       </Helmet>
-      <h1 className="text-center">{t("login.login")}</h1>
+      <h1 className="text-center">{t("signin.signin")}</h1>
       <Formik
         initialValues={{
           email: "",
@@ -34,7 +35,7 @@ function Login({ loginUser }) {
             .required("Required"),
         })}
         onSubmit={(values, { setSubmitting, setFieldError }) => {
-          console.log(values);
+          // console.log(values);
           loginUser(values, navigate, setFieldError, setSubmitting);
         }}
       >
@@ -43,14 +44,14 @@ function Login({ loginUser }) {
             <FormLib
               name="email"
               type="text"
-              label={t("login.email")}
+              label={t("signin.email")}
               placeholder="Enter your email"
               icon={<FiMail />}
             />
             <FormLib
               name="password"
               type="password"
-              label={t("login.password")}
+              label={t("signin.password")}
               placeholder="Enter your password"
               icon={<FiLock />}
             />
@@ -66,9 +67,9 @@ function Login({ loginUser }) {
         )}
       </Formik>
       <div className=" my-2 text-center">
-        <span>{t("login.newuser")}? </span>
-        <Link to="/signup"> {t("login.register")} </Link>
-        {t("login.createyouraccount")}
+        <span>{t("signin.newuser")}? </span>
+        <Link to="/signup"> {t("signin.register")} </Link>
+        {t("signin.createyouraccount")}
       </div>
     </Container>
   );

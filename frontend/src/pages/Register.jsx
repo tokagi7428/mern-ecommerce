@@ -1,58 +1,82 @@
-import { Form, Formik } from "formik";
+import { Form, Formik, validateYupSchema } from "formik";
+import { useTranslation } from "react-i18next";
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { FiUser, FiMail, FiCalendar, FiLock } from "react-icons/fi";
 import FormLib from "../components/FormLib";
+import * as Yup from "yup";
 
 function Register() {
+  const { t } = useTranslation(["common"]);
   return (
     <Container className="small-container border border-1 my-5 p-3">
       <Helmet>
-        <title>Signup</title>
+        <title>{t("signup.signup")}</title>
       </Helmet>
-      <h1 className="text-center">Sign Up</h1>
-      <Formik>
+      <h1 className="text-center">{t("signup.signup")}</h1>
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          dateOfBirth: "",
+          password: "",
+          isAdmin: false,
+          comfirmPassword: "",
+        }}
+        validationSchema={Yup.object({
+          name: Yup.string().required("Required"),
+          email: Yup.string().email("Invalid Email").required("Required"),
+          dateOfBirth: Yup.date().required("Required"),
+          password: Yup.string()
+            .min(6, "Password is too short")
+            .max(30, "Password is too long")
+            .required("Requried"),
+          comfirmPassword: Yup.string()
+            .oneOf([Yup.ref("password")], "Password much match")
+            .required("Required"),
+        })}
+      >
         <Form>
           <FormLib
             name="name"
             type="text"
-            label="Name"
+            label={t("signup.name")}
             placeholder="Enter your name..."
             icon={<FiUser />}
           />
           <FormLib
             name="email"
             type="email"
-            label="email"
+            label={t("signup.email")}
             placeholder="Enter your email"
             icon={<FiMail />}
           />
           <FormLib
-            name="birthday"
+            name="dateOfBirth"
             type="date"
-            label="Birth day"
+            label={t("signup.dateOfBirth")}
             icon={<FiCalendar />}
           />
           <FormLib
             name="password"
             type="password"
-            label="Password"
+            label={t("signup.password")}
             placeholder="Enter your password..."
             icon={<FiLock />}
           />
           <FormLib
             name="comfirmPassword"
             type="password"
-            label="Comfirm Password"
+            label={t("signup.comfirmPassword")}
             placeholder="Enter your password..."
             icon={<FiLock />}
           />
-          <Button type="submit">Sign Up</Button>
+          <Button type="submit"> {t("signup.btnSignup")} </Button>
           <div className="my-2">
-            <span>Already have account? </span>
-            <Link to="/signin">Login</Link>
+            <span> {t("signup.alreadyhaveaccount")} </span>
+            <Link to="/signin"> {t("signup.signin")} </Link>
           </div>
         </Form>
       </Formik>

@@ -3,12 +3,23 @@
         "brand": "แบรนด์",
         "signin": "ลงชื่อใช้งาน"
     },
-    "login" :{
-        "login": "ล็อกอิน",
+    "signin" :{
+        "signin": "ล็อกอิน",
         "email":"อีเมลล์",
         "password":"รหัสผ่าน",
         "newuser": "ผู้ใช้ใหม่",
         "register":"ลงทะเบียน",
         "createyouraccount":"สร้างบัญชีใหม่"
+    },
+    "signup": {
+        "signup":"สมัครสมาชิก",
+        "name":"ชื่อผู้ใช้งาน",
+        "email":"อีเมลล์",
+        "dateOfBirth":"วันเกิด",
+        "password":"รหัสผ่าน",
+        "comfirmPassword":"ยืนยันรหัสผ่าน",
+        "btnSignup":"ยืนยัน",
+        "alreadyhaveaccount":"มีบัญชีผู้ใช้งานแล้ว ? ",
+        "signin":"ล็อกอิน"
     }
 }

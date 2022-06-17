@@ -6,28 +6,65 @@ import { isAuth, generateToken } from "../utils.js";
 
 const userRouter = express.Router();
 
-userRouter.post(
-  "/singin",
-  expressAsyncHandler(async (req, res) => {
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
-      if (bcrypt.compareSync(req.body.password, user.password)) {
-        res.send({
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          dateOfBirth: user.dateOfBirth,
-          isAdmin: user.isAdmin,
-          token: generateToken(user),
-        });
-        return;
-      }
-    }
-    res.status(401).send({ message: "Invalid email or password" });
-  })
-);
+// Signin
+userRouter.post("/signin", (req, res) => {
+  let { email, password } = req.body;
+  email = email.trim();
+  password = password.trim();
 
-router.post(
+  if (email === "" || password === "") {
+    res.json({
+      status: "FAILED",
+      message: "Empty credentials supplied",
+    });
+  } else {
+    // Check if user exist
+    User.find({ email })
+      .then((data) => {
+        if (data.length) {
+          // User exists
+
+          const hashedPassword = data[0].password;
+          bcrypt
+            .compare(password, hashedPassword)
+            .then((result) => {
+              if (result) {
+                // Password match
+                res.json({
+                  status: "SUCCESS",
+                  message: "Signin successful",
+                  data: data,
+                });
+              } else {
+                res.json({
+                  status: "FAILED",
+                  message: "Invalid password entered!",
+                });
+              }
+            })
+            .catch((err) => {
+              res.json({
+                status: "FAILED",
+                message: "An error occurred while comparing passwords",
+              });
+            });
+        } else {
+          res.json({
+            status: "FAILED",
+            message: "Invalid credentials entered!",
+          });
+        }
+      })
+      .catch((err) => {
+        res.json({
+          status: "FAILED",
+          message: "An error occurred while checking for existing user",
+        });
+      });
+  }
+});
+
+userRouter.post(
   "/signup",
   expressAsyncHandler(async (req, res) => {
     let { name, email, password, dateOfBirth, isAdmin } = req.body;
@@ -100,3 +137,5 @@ router.post(
     }
   })
 );
+
+export default userRouter;
