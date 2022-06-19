@@ -59,7 +59,7 @@ function Rating(props) {
       {caption ? (
         <span>{caption}</span>
       ) : (
-        <span>{" " + numReviews + ` ${t("home.reviews")}`}</span>
+        <span>{" " + numReviews + ` ${t("product.reviews")}`}</span>
       )}
     </div>
   );

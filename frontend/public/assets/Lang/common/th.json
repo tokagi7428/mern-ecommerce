@@ -3,11 +3,7 @@
         "brand": "แบรนด์",
         "signin": "ลงชื่อใช้งาน",
         "signout":"ลงชื่อออก",
-        "price":"ราคา",
-        "outOfStock":"สินค้าหมด",
-        "myProducts":"สินค้าของฉัน",
-        "addToCart":"เพิ่มไปยังรถเข็น",
-        "reviews":"รีวิว"
+        "myProducts":"สินค้าของฉัน"
     },
     "signin" :{
         "signin": "ล็อกอิน",
@@ -27,5 +23,23 @@
         "btnSignup":"ยืนยัน",
         "alreadyhaveaccount":"มีบัญชีผู้ใช้งานแล้ว ? ",
         "signin":"ล็อกอิน"
+    },
+    "product":{
+        "status":"สถานะ",
+        "instock":"มีสินค้าในสต๊อก",
+        "unavailable":"สินค้าหมด",
+        "addToCart":"เพิ่มไปยังรถเข็น",
+        "reviews":"รีวิว",
+        "price":"ราคา",
+        "outOfStock":"สินค้าหมด"
+    },
+    "cart": {
+        "cart":"รถเข็น",
+        "myCart":"รถเข็นของฉัน",
+        "cartIsEmpty":"รถเข็นว่าง.",
+        "goShopping":"ไปร้านค้า",
+        "totalOfGoods": "ราคาสินค้าทั้งหมด",
+        "processToCheckout":"ขั้นตอนการชำระเงิน",
+        "items":"ชิ้น"
     }
 }

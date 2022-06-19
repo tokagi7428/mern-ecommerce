@@ -2,13 +2,15 @@ import React, { Suspense, useEffect } from "react";
 import {
   Badge,
   Container,
-  Form,
   Nav,
   Navbar,
   NavDropdown,
+  OverlayTrigger,
+  Tooltip,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
+import { BsCart2 } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
@@ -23,6 +25,8 @@ import { useTranslation } from "react-i18next";
 
 import i18next from "i18next";
 import ProductScreen from "./pages/ProductScreen";
+import Cart from "./pages/Cart";
+import Shipping from "./pages/Shipping";
 
 function App({ user, logoutUser }) {
   const { i18n, t } = useTranslation(["common"]);
@@ -37,21 +41,25 @@ function App({ user, logoutUser }) {
   const handleLanguageChange = (e) => {
     i18n.changeLanguage(e.target.value);
   };
-
   return (
     <BrowserRouter>
       <Suspense fallback={null}>
         <div className="d-flex flex-column site-container">
           <ToastContainer position="top-center" limit={1} />
           <header>
-            <Navbar bg="dark" variant="dark" expand="lg">
+            <Navbar
+              bg="dark"
+              variant="dark"
+              expand="lg"
+              className="d-flex align-items-center"
+            >
               <Container className="p-2 ">
                 <LinkContainer to="/">
                   <Navbar.Brand>{t("home.brand")}</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="nav-toggle" />
                 <Navbar.Collapse id="nav-toggle">
-                  <Nav className="w-100 me-auto justify-content-end">
+                  <Nav className="w-100 me-auto justify-content-end align-items-lg-center">
                     <li className="nav-item ">
                       <select
                         className="nav-link bg-dark border-0 ml-1 mr-2 "
@@ -62,18 +70,30 @@ function App({ user, logoutUser }) {
                         <option value="th">Thailand</option>
                       </select>
                     </li>
-                    <Link to="/cart" className="nav-link me-2 ml-1">
-                      Cart
-                      {cartItems.length > 0 && (
-                        <Badge
-                          pill
-                          bg="danger"
-                          className="position-absolute cart"
+                    {/* tooltip */}
+                    <div className="">
+                      <OverlayTrigger
+                        placement={"bottom"}
+                        overlay={<Tooltip> {t("cart.cart")} </Tooltip>}
+                      >
+                        <Link
+                          to="/cart"
+                          className="nav-link me-2 ml-1 px-3 h5 hover"
                         >
-                          {cartItems.reduce((a, c) => a + c.quantity, 0)}
-                        </Badge>
-                      )}
-                    </Link>
+                          <BsCart2 />
+                          {cartItems.length > 0 && (
+                            <Badge
+                              pill
+                              bg="danger"
+                              className="position-absolute cart"
+                            >
+                              {cartItems.reduce((a, c) => a + c.quantity, 0)}
+                            </Badge>
+                          )}
+                        </Link>
+                      </OverlayTrigger>
+                    </div>
+                    {/* tooltip */}
                     {name ? (
                       <NavDropdown title={name} id="nav-dropdown" bg="dark">
                         <LinkContainer to="/profile">
@@ -107,6 +127,8 @@ function App({ user, logoutUser }) {
                 <Route path="/" element={<Home />} />
                 <Route path="/signin" element={<Login />} />
                 <Route path="/signup" element={<Register />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/shipping" element={<Shipping />} />
                 <Route path="/product/:slug" element={<ProductScreen />} />
                 <Route path="*" element={<PageError />} />
               </Routes>

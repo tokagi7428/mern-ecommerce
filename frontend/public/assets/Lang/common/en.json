@@ -3,11 +3,7 @@
         "brand": "Brand",
         "signin": "Sign In",
         "signout":"Sign Out",
-        "price":"Price",
-        "outOfStock":"Out of Stock",
-        "myProducts":"My Products",
-        "addToCart":"Add to Cart",
-        "reviews":"Reviews"
+        "myProducts":"My Products"
     },
     "signin" :{
         "signin": "Sign In",
@@ -27,5 +23,24 @@
         "btnSignup":"Submit",
         "alreadyhaveaccount":"Already have account ? ",
         "signin":"Sign In"
+    },
+    "product":{
+        "status":"Status",
+        "instock":"In Stock",
+        "unavailable":"Unavailable",
+        "price":"Price",
+        "outOfStock":"Out of Stock",
+        "myProducts":"My Products",
+        "addToCart":"Add to Cart",
+        "reviews":"Reviews"
+    },
+    "cart": {
+        "cart":"Cart",
+        "myCart":"My Cart",
+        "cartIsEmpty":"Cart is empty.",
+        "goShopping":"Go Shopping",
+        "totalOfGoods": "Totals Of Goods",
+        "processToCheckout":"Process to Checkout"
+        ,"items":"Items"
     }
 }
