@@ -2,7 +2,12 @@
     "home" : {
         "brand": "Brand",
         "signin": "Sign In",
-        "signout":"Sign Out"
+        "signout":"Sign Out",
+        "price":"Price",
+        "outOfStock":"Out of Stock",
+        "myProducts":"My Products",
+        "addToCart":"Add to Cart",
+        "reviews":"Reviews"
     },
     "signin" :{
         "signin": "Sign In",

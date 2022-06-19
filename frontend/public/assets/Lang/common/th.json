@@ -2,7 +2,12 @@
     "home" : {
         "brand": "แบรนด์",
         "signin": "ลงชื่อใช้งาน",
-        "signout":"ลงชื่อออก"
+        "signout":"ลงชื่อออก",
+        "price":"ราคา",
+        "outOfStock":"สินค้าหมด",
+        "myProducts":"สินค้าของฉัน",
+        "addToCart":"เพิ่มไปยังรถเข็น",
+        "reviews":"รีวิว"
     },
     "signin" :{
         "signin": "ล็อกอิน",

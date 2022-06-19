@@ -1,0 +1,73 @@
+import bcrypt from "bcryptjs";
+const data = {
+  users: [
+    {
+      name: "Asta",
+      email: "admin@example.com",
+      password: bcrypt.hashSync("123456"),
+      isAdmin: true,
+    },
+    {
+      name: "Uno",
+      email: "admin1@example.com",
+      password: bcrypt.hashSync("123456"),
+      isAdmin: false,
+    },
+  ],
+  products: [
+    {
+      _id: "1",
+      name: "Nike Slim shirt",
+      slug: "nike-slim-shirt",
+      category: "Shirts",
+      image: "/images/nike-shirt.png",
+      price: 120,
+      countInStock: 0,
+      brand: "Nike",
+      rating: 1.5,
+      numReviews: 10,
+      description: "high quality shirt",
+    },
+    {
+      _id: "2",
+      name: "Nike pants",
+      slug: "nike-pants",
+      category: "Pants",
+      image: "/images/nike-pants.png",
+      price: 99,
+      countInStock: 20,
+      brand: "Nike",
+      rating: 4.5,
+      numReviews: 10,
+      description: "low quality shirt",
+    },
+    {
+      _id: "3",
+      name: "Adidas Fit shirt",
+      slug: "adidas-fit-shirt",
+      category: "Shirts",
+      image: "/images/adidas-shirt.png",
+      price: 150,
+      countInStock: 10,
+      brand: "Adidas",
+      rating: 3.5,
+      numReviews: 10,
+      description: "high quality shirt",
+    },
+    {
+      _id: "4",
+      name: "Adidas Fit Pants",
+      slug: "adidas-fit-pants",
+      category: "Pants",
+      image: "/images/adidas-pants.png",
+      price: 199,
+      countInStock: 10,
+      brand: "Adidas",
+      rating: 4,
+      numReviews: 10,
+      description: "high quality shirt",
+    },
+  ],
+};
+
+export default data;

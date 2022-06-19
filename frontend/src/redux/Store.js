@@ -1,17 +1,17 @@
-import { createStore, applyMiddleware, compose } from "redux";
-
-import thunk from "redux-thunk";
-
+import { sessionReducer } from "redux-react-session";
+import fetchReducer from "./reduers/fetchReducer.js";
+import productReducer from "./reduers/fetchData.js";
+import { configureStore } from "@reduxjs/toolkit";
 import { sessionService } from "redux-react-session";
-import rootReducer from "./reduers/rootReducer";
-
-const initialState = {};
-const middlewares = [thunk];
-const Store = createStore(
-  rootReducer,
-  initialState,
-  compose(applyMiddleware(...middlewares))
-);
+import { cartReducer } from "./reduers/cartReducer";
+const Store = configureStore({
+  reducer: {
+    session: sessionReducer,
+    fetchReducer,
+    product: productReducer,
+    myCart: cartReducer,
+  },
+});
 
 sessionService.initSessionService(Store);
 

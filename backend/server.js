@@ -2,8 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-// routes
-import userRoutes from "./routes/userRoutes.js";
+
 dotenv.config();
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -16,8 +15,15 @@ const app = express();
 // convert data to json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+// routes
+import userRoutes from "./routes/userRoutes.js";
+import seedRouter from "./routes/seedRoutes.js";
+import productRouter from "./routes/productRoutes.js";
+// http://localhost:5000/api/seed
+app.use("/api/seed", seedRouter);
 app.use("/api/users", userRoutes);
+// http://localhost:5000/api/products
+app.use("/api/products", productRouter);
 
 // when error something on backend
 app.use((err, req, res, next) => {

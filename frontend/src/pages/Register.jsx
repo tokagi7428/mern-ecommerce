@@ -25,7 +25,7 @@ function Register({ signupUser }) {
           email: "",
           dateOfBirth: "",
           password: "",
-          isAdmin: false,
+          isAdmin: true,
           comfirmPassword: "",
         }}
         validationSchema={Yup.object({

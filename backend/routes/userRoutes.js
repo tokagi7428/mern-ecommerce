@@ -7,6 +7,11 @@ import { isAuth, generateToken } from "../utils.js";
 
 const userRouter = express.Router();
 
+userRouter.get("/", async (req, res) => {
+  const user = await User.find({});
+  res.send(user);
+});
+
 // Signin
 userRouter.post("/signin", (req, res) => {
   let { email, password } = req.body;
@@ -39,7 +44,7 @@ userRouter.post("/signin", (req, res) => {
               } else {
                 res.json({
                   status: "FAILED",
-                  message: "Invalid password entered!",
+                  message: "Invalid password !",
                 });
               }
             })
@@ -52,7 +57,8 @@ userRouter.post("/signin", (req, res) => {
         } else {
           res.json({
             status: "FAILED",
-            message: "Invalid credentials entered!",
+            message:
+              "The username you entered doesn't belong to an account. Please check your email and try again.",
           });
         }
       })

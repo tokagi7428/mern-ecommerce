@@ -23,4 +23,16 @@ main {
   padding-left: 50px;
 }
 
+.img-large{
+  max-width: 100%;
+}
 
+.btn-primary { 
+  background-color: gold;
+  color:black;
+}
+
+.cart{
+  font-size: 10px;
+  
+}

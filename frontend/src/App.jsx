@@ -1,5 +1,12 @@
 import React, { Suspense, useEffect } from "react";
-import { Container, Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import {
+  Badge,
+  Container,
+  Form,
+  Nav,
+  Navbar,
+  NavDropdown,
+} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,12 +17,16 @@ import Register from "./pages/Register";
 import PageError from "./pages/PageError";
 import { connect } from "react-redux";
 import { logoutUser } from "./redux/actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
 //i18n
 import { useTranslation } from "react-i18next";
+
 import i18next from "i18next";
+import ProductScreen from "./pages/ProductScreen";
 
 function App({ user, logoutUser }) {
   const { i18n, t } = useTranslation(["common"]);
+  const cartItems = useSelector((state) => state.myCart.cart.cartItems);
   const { name } = user;
   useEffect(() => {
     if (localStorage.getItem("i18nextLng")?.length > 2) {
@@ -51,6 +62,18 @@ function App({ user, logoutUser }) {
                         <option value="th">Thailand</option>
                       </select>
                     </li>
+                    <Link to="/cart" className="nav-link me-2 ml-1">
+                      Cart
+                      {cartItems.length > 0 && (
+                        <Badge
+                          pill
+                          bg="danger"
+                          className="position-absolute cart"
+                        >
+                          {cartItems.reduce((a, c) => a + c.quantity, 0)}
+                        </Badge>
+                      )}
+                    </Link>
                     {name ? (
                       <NavDropdown title={name} id="nav-dropdown" bg="dark">
                         <LinkContainer to="/profile">
@@ -79,12 +102,15 @@ function App({ user, logoutUser }) {
             </Navbar>
           </header>
           <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/signin" element={<Login />} />
-              <Route path="/signup" element={<Register />} />
-              <Route path="*" element={<PageError />} />
-            </Routes>
+            <Container className="mt-3">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/signin" element={<Login />} />
+                <Route path="/signup" element={<Register />} />
+                <Route path="/product/:slug" element={<ProductScreen />} />
+                <Route path="*" element={<PageError />} />
+              </Routes>
+            </Container>
           </main>
           <footer>
             <div className="bg-dark p-3 text-center text-light ">

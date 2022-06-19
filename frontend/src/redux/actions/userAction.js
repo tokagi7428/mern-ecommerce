@@ -1,6 +1,7 @@
 import axios from "axios";
 import { sessionService } from "redux-react-session";
 import { useNavigate } from "react-router-dom";
+import { getError } from "../../utils";
 import { toast } from "react-toastify";
 
 export const loginUser = (
@@ -22,8 +23,11 @@ export const loginUser = (
 
         if (data.status === "FAILED") {
           const { message } = data;
-
+          toast.error(message);
           //check for specific error
+          if (message.includes("account")) {
+            setFieldError("password", message);
+          }
           if (message.includes("credentials")) {
             setFieldError("email", message);
             setFieldError("password", message);
@@ -31,6 +35,7 @@ export const loginUser = (
             setFieldError("password", message);
           }
         } else if (data.status === "SUCCESS") {
+          // console.log("data : ", data.data[0]);
           const userData = data.data[0];
 
           const token = userData._id;
@@ -43,15 +48,15 @@ export const loginUser = (
                   //push navigate
                   navigate("/");
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => toast.getError(err));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => toast.getError(err));
         }
 
         //complete submission
         setSubmmiing(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.getError(err));
   };
 };
 

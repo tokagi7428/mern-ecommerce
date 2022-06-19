@@ -11,7 +11,6 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { loginUser } from "../redux/actions/userAction";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
 
 function Login({ loginUser }) {
   const navigate = useNavigate();
@@ -34,9 +33,9 @@ function Login({ loginUser }) {
             .max(30, "Pass word is too long")
             .required("Required"),
         })}
-        onSubmit={(values, { setSubmitting, setFieldError }) => {
+        onSubmit={(initialValues, { setSubmitting, setFieldError }) => {
           // console.log(values);
-          loginUser(values, navigate, setFieldError, setSubmitting);
+          loginUser(initialValues, navigate, setFieldError, setSubmitting);
         }}
       >
         {({ isSubmitting }) => (
