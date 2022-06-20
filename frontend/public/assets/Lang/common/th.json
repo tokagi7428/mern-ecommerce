@@ -41,5 +41,30 @@
         "totalOfGoods": "ราคาสินค้าทั้งหมด",
         "processToCheckout":"ขั้นตอนการชำระเงิน",
         "items":"ชิ้น"
+    },
+    "form": {
+        "formAddress": "กรอกฟอร์มที่อยู่",
+        "fullname": "ชื่อเต็ม",
+        "telephone":"เบอร์โทร",
+        "address":"ที่อยู่",
+        "city":"เมือง",
+        "country":"ประเทศ",
+        "postalCode":"รหัสไปรษณีย์",
+        "continue":"ต่อไป",
+        "enterYourName":"กรุณาป้อนชื่อและนามสกุลของคุณ",
+        "enterYourAddress":"กรุณาป้อนที่อยู่ของคุณ",
+        "enterYourCity":"กรุณาป้อนเมืองของคุณ",
+        "enterYourCountry":"กรุณาป้อนชื่อประเทศของคุณ",
+        "EnterYourPostalCode":"รหัสไปรษณีย์",
+        "btnContinue":"ต่อไป",
+        "paymentMethod":"เลือกวิธีการชำระเงิน",
+        "clickFor":"คลิกเพื่อ",
+        "downloadQrCode":"ดาวน์โหลดคิวอาโค้ด"
+    },
+    "checkoutSteps":{
+        "signIn":"ลงชื่อใช้งาน",
+        "formAddress":"กรอกฟอร์มที่อยู่",
+        "payment":"ชำระเงิน",
+        "placeOrder":"สถานะที่การสั่งซื้อ"
     }
 }

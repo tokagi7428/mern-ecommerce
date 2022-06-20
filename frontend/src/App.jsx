@@ -26,7 +26,8 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import ProductScreen from "./pages/ProductScreen";
 import Cart from "./pages/Cart";
-import Shipping from "./pages/Shipping";
+import FormAddress from "./pages/FormAddress";
+import Payment from "./pages/Payment";
 
 function App({ user, logoutUser }) {
   const { i18n, t } = useTranslation(["common"]);
@@ -128,7 +129,8 @@ function App({ user, logoutUser }) {
                 <Route path="/signin" element={<Login />} />
                 <Route path="/signup" element={<Register />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/shipping" element={<Shipping />} />
+                <Route path="/address" element={<FormAddress />} />
+                <Route path="/payment" element={<Payment />} />
                 <Route path="/product/:slug" element={<ProductScreen />} />
                 <Route path="*" element={<PageError />} />
               </Routes>

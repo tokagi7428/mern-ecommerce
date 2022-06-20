@@ -40,7 +40,33 @@
         "cartIsEmpty":"Cart is empty.",
         "goShopping":"Go Shopping",
         "totalOfGoods": "Totals Of Goods",
-        "processToCheckout":"Process to Checkout"
-        ,"items":"Items"
+        "processToCheckout":"Process to Checkout",
+        "items":"Items"
+    },
+    "form": {
+        "formAddress": "Form Address",
+        "fullname": "Full Name",
+        "telephone":"Telephone",
+        "address":"Address",
+        "city":"City",
+        "country":"Country",
+        "postalCode":"Postal Code",
+        "continue":"continue",
+        "enterYourName":"Enter your name...",
+        "enterYourAddress":"Enter your address",
+        "enterYourCity":"Enter your City",
+        "enterYourCountry":"Enter your country",
+        "EnterYourPostalCode":"Enter your Postal Code",
+        "btnContinue":"Continue",
+        "paymentMethod":"Payment Method",
+        "clickFor":"Click For",
+        "downloadQrCode":"Download QR Code"
+    },
+    "checkoutSteps":{
+        "signIn":"Sign-In",
+        "formAddress":"Form Address",
+        "payment":"Payment",
+        "placeOrder":"Place Order"
     }
+
 }

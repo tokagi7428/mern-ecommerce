@@ -8,11 +8,14 @@ import { connect } from "react-redux";
 import { FiMail, FiLock } from "react-icons/fi";
 import * as Loader from "react-loader-spinner";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { loginUser } from "../redux/actions/userAction";
 import { useTranslation } from "react-i18next";
 
 function Login({ loginUser }) {
+  const { search } = useLocation();
+  const redirectInUrl = new URLSearchParams(search).get("redirect");
+  const redirect = redirectInUrl ? redirectInUrl : "/";
   const navigate = useNavigate();
   const { t } = useTranslation(["common"]);
   return (
@@ -35,7 +38,13 @@ function Login({ loginUser }) {
         })}
         onSubmit={(initialValues, { setSubmitting, setFieldError }) => {
           // console.log(values);
-          loginUser(initialValues, navigate, setFieldError, setSubmitting);
+          loginUser(
+            initialValues,
+            navigate,
+            redirect,
+            setFieldError,
+            setSubmitting
+          );
         }}
       >
         {({ isSubmitting }) => (

@@ -33,10 +33,11 @@ function Cart({ user }) {
   };
 
   const checkOutHandler = () => {
+    console.log(user.authenticated);
     if (user.authenticated) {
-      navigate("/shipping");
+      navigate("/address");
     } else {
-      navigate("/signin?redirect=/shipping");
+      navigate("/signin?redirect=/address");
     }
   };
   return (

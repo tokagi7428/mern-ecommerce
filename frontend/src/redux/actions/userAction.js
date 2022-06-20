@@ -1,12 +1,30 @@
 import axios from "axios";
 import { sessionService } from "redux-react-session";
-import { useNavigate } from "react-router-dom";
 import { getError } from "../../utils";
 import { toast } from "react-toastify";
+
+export const formShippingAddress =
+  (initialValues, SAVE_SHIPPING_ADDRESS, navigate, setSubmitting) =>
+  (dispatch) => {
+    try {
+      dispatch(SAVE_SHIPPING_ADDRESS(initialValues));
+      localStorage.setItem(
+        "shippingAddress",
+        JSON.stringify({
+          initialValues,
+        })
+      );
+      navigate("/payment");
+      setSubmitting(false);
+    } catch (err) {
+      toast.error(err);
+    }
+  };
 
 export const loginUser = (
   credentials,
   navigate,
+  redirect,
   setFieldError,
   setSubmmiing
 ) => {
@@ -46,7 +64,7 @@ export const loginUser = (
                 .saveUser(userData)
                 .then(() => {
                   //push navigate
-                  navigate("/");
+                  navigate(redirect || "/");
                 })
                 .catch((err) => toast.getError(err));
             })
@@ -63,6 +81,7 @@ export const loginUser = (
 export const signupUser = (
   credentials,
   navigate,
+  redirect,
   setFieldError,
   setSubmmiing
 ) => {
@@ -102,7 +121,7 @@ export const signupUser = (
               ({ email, password }, navigate, setFieldError, setSubmmiing)
             )
           );
-          navigate("/signin");
+          navigate(redirect || "/");
         }
       })
       .catch((err) => toast.error(err));
