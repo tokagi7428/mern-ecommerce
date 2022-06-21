@@ -38,25 +38,17 @@ export const loginUser = (
       })
       .then((response) => {
         const { data } = response;
-
         if (data.status === "FAILED") {
           const { message } = data;
           toast.error(message);
           //check for specific error
-          if (message.includes("account")) {
-            setFieldError("password", message);
-          }
-          if (message.includes("credentials")) {
-            setFieldError("email", message);
-            setFieldError("password", message);
-          } else if (message.includes("password")) {
-            setFieldError("password", message);
-          }
+          message.includes("password");
+          setFieldError("password", message);
         } else if (data.status === "SUCCESS") {
-          // console.log("data : ", data.data[0]);
-          const userData = data.data[0];
+          console.log("data : ", data.data);
+          const userData = data.data;
 
-          const token = userData._id;
+          const token = userData.token;
           sessionService
             .saveSession(token)
             .then(() => {

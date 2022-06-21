@@ -16,14 +16,21 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // routes
+
+app.get("/api/keys/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
+});
+
 import userRoutes from "./routes/userRoutes.js";
 import seedRouter from "./routes/seedRoutes.js";
 import productRouter from "./routes/productRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 // http://localhost:5000/api/seed
 app.use("/api/seed", seedRouter);
 app.use("/api/users", userRoutes);
 // http://localhost:5000/api/products
 app.use("/api/products", productRouter);
+app.use("/api/orders", orderRouter);
 
 // when error something on backend
 app.use((err, req, res, next) => {

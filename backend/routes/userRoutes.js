@@ -1,7 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
-// import bcrypt from "bcryptjs";
+import bcryptJs from "bcryptjs";
 import bcrypt from "bcrypt";
 import { isAuth, generateToken } from "../utils.js";
 
@@ -13,7 +13,7 @@ userRouter.get("/", async (req, res) => {
 });
 
 // Signin
-userRouter.post("/signin", (req, res) => {
+userRouter.post("/signin", async (req, res) => {
   let { email, password } = req.body;
   email = email.trim();
   password = password.trim();
@@ -25,54 +25,32 @@ userRouter.post("/signin", (req, res) => {
     });
   } else {
     // Check if user exist
-    User.find({ email })
-      .then((data) => {
-        if (data.length) {
-          // User exists
-
-          const hashedPassword = data[0].password;
-          bcrypt
-            .compare(password, hashedPassword)
-            .then((result) => {
-              if (result) {
-                // Password match
-                res.json({
-                  status: "SUCCESS",
-                  message: "Signin successful",
-                  data: data,
-                });
-              } else {
-                res.json({
-                  status: "FAILED",
-                  message: "Invalid password !",
-                });
-              }
-            })
-            .catch((err) => {
-              res.json({
-                status: "FAILED",
-                message: "An error occurred while comparing passwords",
-              });
-            });
-        } else {
-          res.json({
-            status: "FAILED",
-            message:
-              "The username you entered doesn't belong to an account. Please check your email and try again.",
-          });
-        }
-      })
-      .catch((err) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (user) {
+      if (bcryptJs.compareSync(req.body.password, user.password)) {
         res.json({
-          status: "FAILED",
-          message: "An error occurred while checking for existing user",
+          status: "SUCCESS",
+          data: {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            dateOfBirth: user.dateOfBirth,
+            isAdmin: user.isAdmin,
+            token: generateToken(user),
+          },
         });
-      });
+        return;
+      }
+    }
+    res.json({
+      status: "FAILED",
+      message: "Invalid email or password",
+    });
   }
 });
 
 // Signup
-userRouter.post("/signup", (req, res) => {
+userRouter.post("/signup", async (req, res) => {
   let { name, email, password, dateOfBirth } = req.body;
   name = name.trim();
   email = email.trim();
@@ -106,61 +84,35 @@ userRouter.post("/signup", (req, res) => {
     });
   } else {
     // Checking if user already exists
-    User.find({ email })
-      .then((result) => {
-        if (result.length) {
-          // A user already exists
-          res.json({
-            status: "FAILED",
-            message: "email already exists",
-          });
-        } else {
-          // Try to create new user
-
-          // password handling
-          const saltRounds = 10;
-          bcrypt
-            .hash(password, saltRounds)
-            .then((hashedPassword) => {
-              const newUser = new User({
-                name,
-                email,
-                password: hashedPassword,
-                dateOfBirth,
-                token: generateToken(email),
-              });
-
-              newUser
-                .save()
-                .then((result) => {
-                  res.json({
-                    status: "SUCCESS",
-                    message: "Signup successful",
-                    data: result,
-                  });
-                })
-                .catch((err) => {
-                  res.json({
-                    status: "FAILED",
-                    message: "An error occurred while saving user account!",
-                  });
-                });
-            })
-            .catch((err) => {
-              res.json({
-                status: "FAILED",
-                message: "An error occurred while hashing password!",
-              });
-            });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        res.json({
-          status: "FAILED",
-          message: "An error occurred while checking for existing user!",
-        });
+    const userCheck = await User.findOne({ email: req.body.email });
+    if (userCheck) {
+      res.json({
+        status: "FAILED",
+        message: "Email has registed",
       });
+    } else {
+      const newUser = new User({
+        name: req.body.name,
+        email: req.body.email,
+        dateOfBirth: req.body.dateOfBirth,
+        password: bcryptJs.hashSync(req.body.password),
+      });
+      const user = await newUser.save();
+      const data = {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        dateOfBirth: user.dateOfBirth,
+        isAdmin: user.isAdmin,
+        token: generateToken(user),
+      };
+      res.json({
+        status: "SUCCESS",
+        message: "Signin successful",
+        data: data,
+      });
+      return;
+    }
   }
 });
 

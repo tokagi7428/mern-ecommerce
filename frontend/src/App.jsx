@@ -9,7 +9,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { BsCart2 } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
@@ -19,7 +19,7 @@ import Register from "./pages/Register";
 import PageError from "./pages/PageError";
 import { connect } from "react-redux";
 import { logoutUser } from "./redux/actions/userAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 //i18n
 import { useTranslation } from "react-i18next";
 
@@ -28,6 +28,7 @@ import ProductScreen from "./pages/ProductScreen";
 import Cart from "./pages/Cart";
 import FormAddress from "./pages/FormAddress";
 import Payment from "./pages/Payment";
+import PlaceOrder from "./pages/PlaceOrder";
 
 function App({ user, logoutUser }) {
   const { i18n, t } = useTranslation(["common"]);
@@ -132,6 +133,7 @@ function App({ user, logoutUser }) {
                 <Route path="/address" element={<FormAddress />} />
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/product/:slug" element={<ProductScreen />} />
+                <Route path="/placeorder" element={<PlaceOrder />} />
                 <Route path="*" element={<PageError />} />
               </Routes>
             </Container>

@@ -18,12 +18,16 @@ function FormAddress({ formShippingAddress, user }) {
   const navigate = useNavigate();
   const { t } = useTranslation(["common"]);
   useEffect(() => {
-    if (Object.keys(user).length === 0) {
-      if (user.authenticated) {
-        navigate("/signin?redirect=/address");
-      }
+    const { authenticated } = user;
+    // console.log(user);
+    // if (Object.keys(user).length === 0) {
+    //   navigate("/signin?redirect=/address");
+    // }
+    if (!authenticated) {
+      navigate("/signin?redirect=/address");
     }
   }, [navigate, user]);
+
   return (
     <div className="">
       <Helmet>
@@ -34,7 +38,7 @@ function FormAddress({ formShippingAddress, user }) {
         <h1 className="text-center">{t("form.formAddress")}</h1>
         <Formik
           initialValues={{
-            name: "",
+            fullName: "",
             telephone: "",
             address: "",
             city: "",
@@ -42,7 +46,7 @@ function FormAddress({ formShippingAddress, user }) {
             postalCode: "",
           }}
           validationSchema={Yup.object({
-            name: Yup.string().trim().required("name is required"),
+            fullName: Yup.string().trim().required("Full name is required"),
             telephone: Yup.string().trim().required("Telephone is required"),
             address: Yup.string().required(),
             city: Yup.string().trim().required("City is required"),
@@ -63,7 +67,7 @@ function FormAddress({ formShippingAddress, user }) {
             <Formib
               label={t("form.fullname")}
               type="text"
-              name="name"
+              name="fullName"
               placeholder={t("form.enterYourName")}
               icon={<FiUser />}
             />
@@ -112,9 +116,9 @@ function FormAddress({ formShippingAddress, user }) {
   );
 }
 
-const mapStateToProps = ({ session }) => {
+const mapStateToProps = (state) => {
   return {
-    user: session.user,
+    user: state.session,
   };
 };
 

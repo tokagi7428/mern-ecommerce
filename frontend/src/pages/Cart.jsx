@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
 function Cart({ user }) {
+  console.log(user);
   const navigate = useNavigate();
   const { t } = useTranslation(["common"]);
   const dispatch = useDispatch();
