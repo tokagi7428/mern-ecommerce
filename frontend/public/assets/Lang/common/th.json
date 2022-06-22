@@ -66,5 +66,30 @@
         "formAddress":"กรอกฟอร์มที่อยู่",
         "payment":"ชำระเงิน",
         "placeOrder":"สถานะที่การสั่งซื้อ"
+    },
+    "order": {
+        "orderHistory":"ประวัติคำสั่งซื้อ",
+        "id":"ไอดี",
+        "date":"วันที่",
+        "total":"ยอดรวม",
+        "paid":"จ่าย",
+        "delivered":"ส่ง",
+        "actions":"แสดง",
+        "details":"รายละเอียด",
+        "previewOrder":"รายการสินค้า",
+        "method":"วิธี",
+        "edit":"แก้ไข",
+        "good":"สินค้า",
+        "orderSummary":"สรุปคำสั่งซื้อ",
+        "shipping":"การส่งสินค้า",
+        "taxPrice":"ภาษีสินค้า",
+        "orderTotal":"คำสั่งซื้อทั้งหมด",
+        "placeOrder":"สถานที่สั่งสินค้า",
+        "deliveredAt":"จัดส่งที่",
+        "notDelivered":"ยังไม่จัดส่ง",
+        "paidAt":"จ่ายที่",
+        "notPaid":"ยังไม่จ่าย",
+        "tax":"ภาษี"
     }
+
 }

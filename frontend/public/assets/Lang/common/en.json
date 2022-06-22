@@ -67,6 +67,31 @@
         "formAddress":"Form Address",
         "payment":"Payment",
         "placeOrder":"Place Order"
+    },
+    "order": {
+        "order":"Order",
+        "orderHistory":"Order history",
+        "id":"ID",
+        "date":"DATE",
+        "total":"TOTAL",
+        "paid":"PAID",
+        "delivered":"DELIVERED",
+        "actions":"ACTIONS",
+        "details":"Details",
+        "previewOrder":"Preview Order",
+        "method":"Method",
+        "edit":"Edit",
+        "good":"Goods",
+        "orderSummary":"Order Summary",
+        "shipping":"Shipping",
+        "taxPrice":"Tax Price",
+        "orderTotal":"Order Total",
+        "placeOrder":"Place Order",
+        "deliveredAt":"Delivered at",
+        "notDelivered":"Not Delivered",
+        "paidAt":"Paid at",
+        "notPaid":"Not Paid",
+        "tax":"Tax"
     }
 
 }

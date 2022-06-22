@@ -4,6 +4,10 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cart: {
+      cartItems: localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : [],
+
       shippingAddress: localStorage.getItem("shippingAddress")
         ? JSON.parse(localStorage.getItem("shippingAddress"))
         : {},
@@ -11,10 +15,6 @@ export const cartSlice = createSlice({
       paymentMethod: localStorage.getItem("paymentMethod")
         ? localStorage.getItem("paymentMethod")
         : "",
-
-      cartItems: localStorage.getItem("cartItems")
-        ? JSON.parse(localStorage.getItem("cartItems"))
-        : [],
     },
   },
   reducers: {

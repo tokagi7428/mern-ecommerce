@@ -64,7 +64,9 @@ function Login({ loginUser }) {
               icon={<FiLock />}
             />
             <div className="">
-              {!isSubmitting && <Button type="submit">Login</Button>}{" "}
+              {!isSubmitting && (
+                <Button type="submit">{t("signin.signin")}</Button>
+              )}{" "}
               <div className="d-flex justify-content-center">
                 {isSubmitting && (
                   <Loader.ThreeDots type="ThreeDots" height={80} width={80} />

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const orderSchame = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     orderItems: [
       {
@@ -45,5 +45,5 @@ const orderSchame = new mongoose.Schema(
   }
 );
 
-const Order = mongoose.model("Order", orderSchame);
+const Order = mongoose.model("Order", orderSchema);
 export default Order;

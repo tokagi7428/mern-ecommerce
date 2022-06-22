@@ -29,6 +29,8 @@ import Cart from "./pages/Cart";
 import FormAddress from "./pages/FormAddress";
 import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
+import OrderScreen from "./pages/OrderScreen";
+import OrderHistory from "./pages/OrderHistory";
 
 function App({ user, logoutUser }) {
   const { i18n, t } = useTranslation(["common"]);
@@ -134,6 +136,8 @@ function App({ user, logoutUser }) {
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/product/:slug" element={<ProductScreen />} />
                 <Route path="/placeorder" element={<PlaceOrder />} />
+                <Route path="/order/:id" element={<OrderScreen />} />
+                <Route path="/orderhistory" element={<OrderHistory />} />
                 <Route path="*" element={<PageError />} />
               </Routes>
             </Container>

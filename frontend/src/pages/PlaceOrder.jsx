@@ -7,6 +7,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { CART_CLEAR } from "../redux/reduers/cartReducer";
 import Loading from "../components/Loading";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -22,6 +23,7 @@ const reducer = (state, action) => {
 };
 
 function PlaceOrder() {
+  const { t } = useTranslation(["common"]);
   const [{ loading }, dispatchLocal] = useReducer(reducer, {
     loading: false,
   });
@@ -29,7 +31,7 @@ function PlaceOrder() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.session.user);
   const cart = useSelector((state) => state.myCart.cart);
-  console.log(user);
+  // console.log(user);
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.234234 => 123.23
   const itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
@@ -58,7 +60,7 @@ function PlaceOrder() {
           },
         }
       );
-      dispatch(CART_CLEAR);
+      dispatch(CART_CLEAR());
       dispatchLocal({ type: "CREATE_SUCCESS" });
       localStorage.removeItem("cartItems");
       navigate(`/order/${data.order._id}`);
@@ -78,20 +80,20 @@ function PlaceOrder() {
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
       <Helmet>
-        <title>Preview Order</title>
+        <title>{t("order.previewOrder")}</title>
       </Helmet>
-      <h1 className="my-3">Preview Order</h1>
+      <h1 className="my-3">{t("order.previewOrder")}</h1>
       <Row>
         <Col md={8}>
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Shipping</Card.Title>
+              <Card.Title> {t("order.shipping")} </Card.Title>
               <Card.Text>
-                <strong>Name : </strong>
+                <strong>{t("signup.name")} : </strong>
                 <span> {cart.shippingAddress.fullName}</span> <br />
-                <strong>Tel. </strong>
+                <strong>{t("form.telephone")} </strong>
                 <span>{cart.shippingAddress.telephone}</span> <br />
-                <strong>Address : </strong>
+                <strong>{t("form.address")} : </strong>
                 <span>
                   {cart.shippingAddress.address},{cart.shippingAddress.city}
                   {cart.shippingAddress.postalCode},
@@ -104,21 +106,21 @@ function PlaceOrder() {
             <Card.Body>
               <Row>
                 <Col>
-                  <Card.Title>Payment</Card.Title>
+                  <Card.Title> {t("checkoutSteps.payment")} </Card.Title>
                   <Card.Text>
-                    <strong>Method : </strong>
+                    <strong>{t("order.method")} : </strong>
                     {cart.paymentMethod}
                   </Card.Text>
                 </Col>
                 <Col className="d-flex justify-content-end ">
-                  <Link to="/payment">Edit</Link>
+                  <Link to="/payment">{t("order.edit")}</Link>
                 </Col>
               </Row>
             </Card.Body>
           </Card>
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Items</Card.Title>
+              <Card.Title>{t("order.good")}</Card.Title>
               <ListGroup variant="flush">
                 {cart.cartItems.map((item) => (
                   <ListGroup.Item key={item._id}>
@@ -146,31 +148,34 @@ function PlaceOrder() {
         </Col>
         <Col md={4}>
           <Card>
-            <Card.Header className="text-center">Order Summary</Card.Header>
+            <Card.Header className="text-center">
+              {" "}
+              {t("order.orderSummary")}{" "}
+            </Card.Header>
             <Card.Body>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
-                    <Col>Items</Col>
+                    <Col>{t("order.good")}</Col>
                     <Col>${itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Shipping</Col>
+                    <Col>{t("order.shipping")}</Col>
                     <Col>${shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Tax Price</Col>
+                    <Col>{t("order.taxPrice")}</Col>
                     <Col>${taxPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong>Order Total</strong>
+                      <strong>{t("order.orderTotal")}</strong>
                     </Col>
                     <Col>
                       <strong>${totalPrice.toFixed(2)}</strong>
@@ -184,7 +189,7 @@ function PlaceOrder() {
                       onClick={placeOrderHandler}
                       disabled={cart.cartItems.length === 0}
                     >
-                      Place Order
+                      {t("order.placeOrder")}
                     </Button>
                   </div>
                   {loading && <Loading></Loading>}
