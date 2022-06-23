@@ -31,6 +31,8 @@ import Payment from "./pages/Payment";
 import PlaceOrder from "./pages/PlaceOrder";
 import OrderScreen from "./pages/OrderScreen";
 import OrderHistory from "./pages/OrderHistory";
+import SearchBox from "./components/SearchBox";
+import SearchScreen from "./pages/SearchScreen";
 
 function App({ user, logoutUser }) {
   const { i18n, t } = useTranslation(["common"]);
@@ -62,7 +64,10 @@ function App({ user, logoutUser }) {
                   <Navbar.Brand>{t("home.brand")}</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="nav-toggle" />
+
                 <Navbar.Collapse id="nav-toggle">
+                  <SearchBox />
+
                   <Nav className="w-100 me-auto justify-content-end align-items-lg-center">
                     <li className="nav-item ">
                       <select
@@ -129,6 +134,7 @@ function App({ user, logoutUser }) {
             <Container className="mt-3">
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/search" element={<SearchScreen />} />
                 <Route path="/signin" element={<Login />} />
                 <Route path="/signup" element={<Register />} />
                 <Route path="/cart" element={<Cart />} />
