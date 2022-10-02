@@ -16,6 +16,11 @@ function Register({ signupUser }) {
   const navigate = useNavigate();
   const redirectInUrl = new URLSearchParams(search).get("redirect");
   const redirect = redirectInUrl ? redirectInUrl : "/";
+
+  window.onbeforeunload = function () {
+    return "Are you want to reload this page";
+  };
+
   return (
     <Container className="small-container border border-1 my-5 p-3">
       <Helmet>

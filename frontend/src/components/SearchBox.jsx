@@ -24,7 +24,12 @@ function SearchBox() {
           aria-describedby="button-search"
         ></FormControl>
       </InputGroup>
-      <Button variant="outline-warning" type="submit" id="button-search">
+      <Button
+        variant="outline-warning"
+        type="submit"
+        id="button-search"
+        className="ms-1"
+      >
         <FaSearch />
       </Button>
     </Form>
