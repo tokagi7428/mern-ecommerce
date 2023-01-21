@@ -1,9 +1,9 @@
 ### Hi, welcome to my project mern-ecommerce
 
-#Go to the frontend project
+# Go to the frontend project
 cd frontend
 
-#install node modules
+# install node modules
 npm install
 
 # start application
