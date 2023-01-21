@@ -1,23 +1,29 @@
-### Hi, welcome to my project mern-ecommerce
+# Hi, welcome to my project mern-ecommerce
 
-### Go to the frontend project
-cd frontend
+## Build Setup
 
-### install node modules
-npm install
 
-### start application
-npm run start
+```bash
+# setup frontend
+$ cd frontend
+# install node modules
+$ npm install
 
-### open application
-http://localhost:3000/
+# start application
+$ npm run start
 
-### open new terminal
-### Enter to the api
+# open application
+$ http://localhost:3000/
+```
+
+```bash
+# setup backend open your new terminal
+# Enter to the api
  cd backend
 
-### install node modules
+# install node modules
 npm install
 
-### open api
+# open api
 npm start
+```
