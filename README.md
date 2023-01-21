@@ -7,7 +7,7 @@ cd frontend
 npm install
 
 ### start application
-npm install
+npm run start
 
 ### open application
 http://localhost:3000/
