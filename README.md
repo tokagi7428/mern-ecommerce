@@ -1,23 +1,23 @@
 ### Hi, welcome to my project mern-ecommerce
 
-# Go to the frontend project
+### Go to the frontend project
 cd frontend
 
-# install node modules
+### install node modules
 npm install
 
-# start application
+### start application
 npm install
 
-# open application
+### open application
 http://localhost:3000/
 
-# open new terminal
-# Enter to the api
+### open new terminal
+### Enter to the api
 cd backend
 
-# install node modules
+### install node modules
 npm install
 
-# open api
+### open api
 npm start
