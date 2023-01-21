@@ -19,5 +19,5 @@ cd backend
 # install node modules
 npm install
 
-#open api
+# open api
 npm start
