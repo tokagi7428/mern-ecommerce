@@ -14,7 +14,7 @@ http://localhost:3000/
 
 ### open new terminal
 ### Enter to the api
-cd backend
+ cd backend
 
 ### install node modules
 npm install
